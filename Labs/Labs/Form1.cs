@@ -42,8 +42,7 @@ namespace Labs
                 }
             }
 
-            processImage_intensityThresholding(ref im1, ref im2);
-            moddifiedPb.Image = im2;
+            moddifiedPb.Image = im1;
         }
 
 
@@ -100,6 +99,12 @@ namespace Labs
 
                 fs.Close();
             }
+        }
+
+        private void intensityThresholdingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            processImage_intensityThresholding(ref im1, ref im2);
+            moddifiedPb.Image = im2;
         }
     }
 }

@@ -34,6 +34,8 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.loadTsb = new System.Windows.Forms.ToolStripButton();
             this.saveTsb = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.intensityThresholdingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.refferencePb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moddifiedPb)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -59,7 +61,8 @@
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadTsb,
-            this.saveTsb});
+            this.saveTsb,
+            this.toolStripDropDownButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(800, 25);
@@ -85,6 +88,24 @@
             this.saveTsb.Size = new System.Drawing.Size(35, 22);
             this.saveTsb.Text = "Save";
             this.saveTsb.Click += new System.EventHandler(this.saveTsb_Click_1);
+            // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.intensityThresholdingToolStripMenuItem});
+            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(51, 22);
+            this.toolStripDropDownButton1.Text = "Filters";
+            // 
+            // intensityThresholdingToolStripMenuItem
+            // 
+            this.intensityThresholdingToolStripMenuItem.Name = "intensityThresholdingToolStripMenuItem";
+            this.intensityThresholdingToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.intensityThresholdingToolStripMenuItem.Text = "Intensity Thresholding";
+            this.intensityThresholdingToolStripMenuItem.Click += new System.EventHandler(this.intensityThresholdingToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -112,6 +133,8 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton loadTsb;
         private System.Windows.Forms.ToolStripButton saveTsb;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripMenuItem intensityThresholdingToolStripMenuItem;
     }
 }
 
