@@ -18,7 +18,7 @@ namespace Labs
         float R_param = 0.21f;
         float B_param = 0.07f;
         float G_param = 0.72f;
-        int threshold = 200;
+        int threshold = 150;
 
 
         public Form1()

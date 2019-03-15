@@ -167,6 +167,9 @@ PublishScripts/
 csx/
 *.build.csdef
 
+# Python
+venv/
+
 # Microsoft Azure Emulator
 ecf/
 rcf/
