@@ -7,28 +7,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Labs
 {
+    
     public partial class Form1 : Form
     {
 
         Bitmap im1;
         Bitmap im2;
-        float R_param = 0.21f;
-        float B_param = 0.07f;
-        float G_param = 0.72f;
-        int threshold = 150;
+        Bitmap diffImg;
+
+        delegate void Filter(ref Bitmap a, ref Bitmap b, Dictionary<String, String> parameters);
 
 
         public Form1()
         {
             InitializeComponent();
             im2 = new Bitmap(moddifiedPb.Size.Width,moddifiedPb.Size.Height);
+            diffImg = new Bitmap(moddifiedPb.Size.Width, moddifiedPb.Size.Height);
+
         }
 
         private void loadTsb_Click(object sender, EventArgs e)
         {
+            swapButton.Visible = true;
             using (OpenFileDialog dlg = new OpenFileDialog())
             {
                 dlg.Title = "Open Image";
@@ -39,30 +43,14 @@ namespace Labs
                     im1 = new Bitmap(dlg.FileName);
                     refferencePb.Image = new Bitmap(im1, refferencePb.Size);
                     im1 = (Bitmap)refferencePb.Image;
+                    
                 }
             }
 
             moddifiedPb.Image = im1;
         }
 
-
-
-        private void processImage_intensityThresholding(ref Bitmap original, ref Bitmap newImage)
-        {
-            for(int i = 0; i < original.Size.Height; ++i)
-                for(int j = 0; j < original.Size.Width; ++j)
-                {
-                    Color c = original.GetPixel(j, i);
-                    int intensity = (int)(( R_param * c.R + G_param * c.G + B_param * c.B) / (R_param + B_param + G_param));
-
-                    if (intensity < threshold)
-                        intensity = 0;
-                    else
-                        intensity = 255;
-                    newImage.SetPixel(j, i, Color.FromArgb(intensity, intensity, intensity));  
-                }
-        }
-
+      
         private void saveTsb_Click_1(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -101,9 +89,98 @@ namespace Labs
             }
         }
 
+        private void applyFilter(ref Bitmap original, ref Bitmap newImage, Filter filter, Dictionary<String, String> parameters)
+        {
+            filter(ref original, ref newImage, parameters);
+            Filters.getDiff(ref original, ref newImage, ref diffImg);
+            diffPb.Image = diffImg;
+            diffLabel.Visible = true;
+        }
+
+
         private void intensityThresholdingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            processImage_intensityThresholding(ref im1, ref im2);
+            Filter del = Filters.processImage_intensityThresholding;
+            applyFilter(ref im1, ref im2, Filters.processImage_intensityThresholding, new Dictionary<string, string> { { "threshold", "128" } });
+            moddifiedPb.Image = im2;
+        }
+
+        private void swapButton_Click(object sender, EventArgs e)
+        {
+            Bitmap temp = im1;
+            im1 = im2;
+            im2 = temp;
+
+            refferencePb.Image = im1;
+            moddifiedPb.Image = im2;
+        }
+
+        private void enhanceContrastToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+          
+        }
+
+
+        private Dictionary<String, String> loadParams()
+        {
+            Dictionary<String, String> res = new Dictionary<String, String>();
+
+            string param = System.IO.File.ReadAllText("params.txt");
+            foreach(string s in param.Split('\n'))
+            {
+                res.Add(s.Split(',')[0], s.Split (',')[1]);
+            }
+
+            return res;
+        }
+
+        private void increaseDecreaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Dictionary<String, String> parameters = loadParams();
+            applyFilter(ref im1, ref im2, Filters.contrastEnhancement, parameters);
+            moddifiedPb.Image = im2;
+        }
+
+        private void compactToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            applyFilter(ref im1, ref im2, Filters.contrastCompacting, null);
+            moddifiedPb.Image = im2;
+        }
+
+        private void equalizationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            applyFilter(ref im1, ref im2, Filters.contrastEqualization, null);
+            moddifiedPb.Image = im2;
+        }
+
+  
+        private void spatialBlurToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            applyFilter(ref im1, ref im2, Filters.SpatialBlur3x3, null);
+            moddifiedPb.Image = im2;
+        }
+
+        private void contrastReversingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            applyFilter(ref im1, ref im2, Filters.contrastReversing, null);
+            moddifiedPb.Image = im2;
+        }
+
+        private void laplacianFilterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            applyFilter(ref im1, ref im2, Filters.laplace, null);
+            moddifiedPb.Image = im2;
+        }
+
+        private void conturToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            applyFilter(ref im1, ref im2, Filters.contur, null);
+            moddifiedPb.Image = im2;
+        }
+
+        private void skeletizationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            applyFilter(ref im1, ref im2, Filters.skeletization, null);
             moddifiedPb.Image = im2;
         }
     }
