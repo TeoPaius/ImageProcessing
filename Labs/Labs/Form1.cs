@@ -183,5 +183,11 @@ namespace Labs
             applyFilter(ref im1, ref im2, Filters.skeletization, null);
             moddifiedPb.Image = im2;
         }
+
+        private void thinningToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            applyFilter(ref im1, ref im2, Filters.thinning, null);
+            moddifiedPb.Image = im2;
+        }
     }
 }

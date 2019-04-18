@@ -400,5 +400,57 @@ namespace Labs
                     }
                 }
         }
+
+        public static void thinning(ref Bitmap bm1, ref Bitmap bm2, Dictionary<String, String> parameters)
+        {
+            int[] iOffsets = new int[] { -1, -1, -1, 0, 1, 1,  1,  0};
+            int[] jOffsets = new int[] { -1,  0,  1, 1, 1, 0, -1, -1};
+
+
+            for(int m = 1; m < 2; ++m)
+            { 
+                for (int i = 0; i < bm1.Size.Height; ++i)
+                    for (int j = 0; j < bm1.Size.Width; ++j)
+                    {
+                        int cnt = 0;
+                        int col = 0;
+                        int t = 0;
+                        if (bm1.GetPixel(j, i).R == 255)
+                        {
+                            bm2.SetPixel(j, i, Color.FromArgb(255, 255, 255));
+                            continue;
+                        }
+                        for (int k = 0; k < 8; ++k)
+                        {
+                            int newI = i + iOffsets[k];
+                            int newJ = j + jOffsets[k];
+                            if (newI == i && newJ == j)
+                                continue;
+                            if (newI < 0 || newJ < 0 || newI >= bm1.Size.Height || newJ >= bm1.Size.Width)
+                                continue;
+                            if (bm1.GetPixel(newJ, newI).R == 0)
+                                cnt++;
+
+                            int nextI = i + iOffsets[(k+1)%8];
+                            int nextJ = j + jOffsets[(k+1)%8];
+
+                            if (nextI < 0 || nextJ < 0 || nextI >= bm1.Size.Height || nextJ >= bm1.Size.Width)
+                                continue;
+                            if (bm1.GetPixel(newJ, newI).R == 0 && bm1.GetPixel(nextJ, nextI).R == 255)
+                                t++;
+
+                        
+
+                        }
+                        if (cnt == 1 || cnt > 6 || t != 1)
+                            col = 0;
+                        else
+                            col = 255;
+                        bm2.SetPixel(j, i, Color.FromArgb(col, col, col));
+                    }
+                //bm1 = bm2;
+            }
+        }
+
     }
 }
