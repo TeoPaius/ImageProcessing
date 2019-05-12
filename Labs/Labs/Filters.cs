@@ -452,5 +452,51 @@ namespace Labs
             }
         }
 
+
+        public static void thinning_morph(ref Bitmap bm1, ref Bitmap bm2, Dictionary<String, String> parameters)
+        {
+            int[] iOffsets = new int[] { -1, -1, -1, 0, 1, 1, 1, 0 };
+            int[] jOffsets = new int[] { -1, 0, 1, 1, 1, 0, -1, -1 };
+
+            int[] kernel = new int[] { 1, 1, 1, 1, 1, 1, 1, 1 };
+
+            for (int m = 1; m < 2; ++m)
+            {
+                for (int i = 0; i < bm1.Size.Height; ++i)
+                    for (int j = 0; j < bm1.Size.Width; ++j)
+                    {
+                        if(bm1.GetPixel(j, i).R == 255)
+                                continue;
+                        int unmatches = 0;
+                        for (int k = 0; k < 8; ++k)
+                        {
+                            int newI = i + iOffsets[k];
+                            int newJ = j + jOffsets[k];
+                            if (newI == i && newJ == j)
+                                continue;
+                            if (newI < 0 || newJ < 0 || newI >= bm1.Size.Height || newJ >= bm1.Size.Width)
+                                continue;
+                            
+
+                            if (kernel[k] == -1)
+                                continue;
+                            if (kernel[k] == 0 && bm1.GetPixel(newJ, newI).R == 0)
+                                unmatches++;
+                            if (kernel[k] == 1 && bm1.GetPixel(newJ, newI).R == 255)
+                                unmatches++;
+
+                        }
+                        
+
+                        if(unmatches == 0)
+                            bm2.SetPixel(j, i, Color.FromArgb(255, 255, 255));
+                        else
+                            bm2.SetPixel(j, i, Color.FromArgb(0, 0, 0));
+                    }
+                //bm1 = bm2;
+            }
+        }
+
+
     }
 }

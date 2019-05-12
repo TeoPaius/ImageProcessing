@@ -50,10 +50,12 @@
             this.imageTransformToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conturToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.skeletizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thinningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.swapButton = new System.Windows.Forms.Button();
             this.diffPb = new System.Windows.Forms.PictureBox();
             this.diffLabel = new System.Windows.Forms.Label();
-            this.thinningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.morphologyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thinningToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.refferencePb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moddifiedPb)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -115,7 +117,8 @@
             this.intensityThresholdingToolStripMenuItem,
             this.enhanceContrastToolStripMenuItem,
             this.spatialFiltersToolStripMenuItem,
-            this.imageTransformToolStripMenuItem});
+            this.imageTransformToolStripMenuItem,
+            this.morphologyToolStripMenuItem});
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
@@ -205,16 +208,23 @@
             // conturToolStripMenuItem
             // 
             this.conturToolStripMenuItem.Name = "conturToolStripMenuItem";
-            this.conturToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.conturToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.conturToolStripMenuItem.Text = "Contur";
             this.conturToolStripMenuItem.Click += new System.EventHandler(this.conturToolStripMenuItem_Click);
             // 
             // skeletizationToolStripMenuItem
             // 
             this.skeletizationToolStripMenuItem.Name = "skeletizationToolStripMenuItem";
-            this.skeletizationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.skeletizationToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.skeletizationToolStripMenuItem.Text = "Skeletization";
             this.skeletizationToolStripMenuItem.Click += new System.EventHandler(this.skeletizationToolStripMenuItem_Click);
+            // 
+            // thinningToolStripMenuItem
+            // 
+            this.thinningToolStripMenuItem.Name = "thinningToolStripMenuItem";
+            this.thinningToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.thinningToolStripMenuItem.Text = "Thinning";
+            this.thinningToolStripMenuItem.Click += new System.EventHandler(this.thinningToolStripMenuItem_Click);
             // 
             // swapButton
             // 
@@ -245,12 +255,20 @@
             this.diffLabel.Text = "Difference";
             this.diffLabel.Visible = false;
             // 
-            // thinningToolStripMenuItem
+            // morphologyToolStripMenuItem
             // 
-            this.thinningToolStripMenuItem.Name = "thinningToolStripMenuItem";
-            this.thinningToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.thinningToolStripMenuItem.Text = "Thinning";
-            this.thinningToolStripMenuItem.Click += new System.EventHandler(this.thinningToolStripMenuItem_Click);
+            this.morphologyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.thinningToolStripMenuItem1});
+            this.morphologyToolStripMenuItem.Name = "morphologyToolStripMenuItem";
+            this.morphologyToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.morphologyToolStripMenuItem.Text = "Morphology";
+            // 
+            // thinningToolStripMenuItem1
+            // 
+            this.thinningToolStripMenuItem1.Name = "thinningToolStripMenuItem1";
+            this.thinningToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.thinningToolStripMenuItem1.Text = "Thinning";
+            this.thinningToolStripMenuItem1.Click += new System.EventHandler(this.thinningToolStripMenuItem1_Click);
             // 
             // Form1
             // 
@@ -299,6 +317,8 @@
         private System.Windows.Forms.ToolStripMenuItem conturToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem skeletizationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thinningToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem morphologyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem thinningToolStripMenuItem1;
     }
 }
 
