@@ -195,5 +195,19 @@ namespace Labs
             applyFilter(ref im1, ref im2, Filters.thinning_morph, null);
             moddifiedPb.Image = im2;
         }
+
+        private void openingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            applyFilter(ref im1, ref im2, Filters.opening_morph, null);
+            moddifiedPb.Image = im2;
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            Bitmap bm = new Bitmap( refferencePb.Image);
+            bm.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            im1 = bm;
+            refferencePb.Image = bm;
+        }
     }
 }

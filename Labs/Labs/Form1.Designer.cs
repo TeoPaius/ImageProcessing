@@ -51,11 +51,13 @@
             this.conturToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.skeletizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thinningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.morphologyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thinningToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.openingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.swapButton = new System.Windows.Forms.Button();
             this.diffPb = new System.Windows.Forms.PictureBox();
             this.diffLabel = new System.Windows.Forms.Label();
-            this.morphologyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.thinningToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.refferencePb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moddifiedPb)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -66,7 +68,7 @@
             // 
             this.refferencePb.Location = new System.Drawing.Point(27, 96);
             this.refferencePb.Name = "refferencePb";
-            this.refferencePb.Size = new System.Drawing.Size(332, 342);
+            this.refferencePb.Size = new System.Drawing.Size(330, 330);
             this.refferencePb.TabIndex = 0;
             this.refferencePb.TabStop = false;
             // 
@@ -74,7 +76,7 @@
             // 
             this.moddifiedPb.Location = new System.Drawing.Point(452, 96);
             this.moddifiedPb.Name = "moddifiedPb";
-            this.moddifiedPb.Size = new System.Drawing.Size(332, 342);
+            this.moddifiedPb.Size = new System.Drawing.Size(330, 330);
             this.moddifiedPb.TabIndex = 1;
             this.moddifiedPb.TabStop = false;
             // 
@@ -83,7 +85,8 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadTsb,
             this.saveTsb,
-            this.toolStripDropDownButton1});
+            this.toolStripDropDownButton1,
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1250, 25);
@@ -226,6 +229,29 @@
             this.thinningToolStripMenuItem.Text = "Thinning";
             this.thinningToolStripMenuItem.Click += new System.EventHandler(this.thinningToolStripMenuItem_Click);
             // 
+            // morphologyToolStripMenuItem
+            // 
+            this.morphologyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.thinningToolStripMenuItem1,
+            this.openingToolStripMenuItem});
+            this.morphologyToolStripMenuItem.Name = "morphologyToolStripMenuItem";
+            this.morphologyToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.morphologyToolStripMenuItem.Text = "Morphology";
+            // 
+            // thinningToolStripMenuItem1
+            // 
+            this.thinningToolStripMenuItem1.Name = "thinningToolStripMenuItem1";
+            this.thinningToolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
+            this.thinningToolStripMenuItem1.Text = "Thinning";
+            this.thinningToolStripMenuItem1.Click += new System.EventHandler(this.thinningToolStripMenuItem1_Click);
+            // 
+            // openingToolStripMenuItem
+            // 
+            this.openingToolStripMenuItem.Name = "openingToolStripMenuItem";
+            this.openingToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.openingToolStripMenuItem.Text = "Opening";
+            this.openingToolStripMenuItem.Click += new System.EventHandler(this.openingToolStripMenuItem_Click);
+            // 
             // swapButton
             // 
             this.swapButton.Location = new System.Drawing.Point(365, 251);
@@ -241,7 +267,7 @@
             // 
             this.diffPb.Location = new System.Drawing.Point(850, 96);
             this.diffPb.Name = "diffPb";
-            this.diffPb.Size = new System.Drawing.Size(332, 342);
+            this.diffPb.Size = new System.Drawing.Size(330, 330);
             this.diffPb.TabIndex = 4;
             this.diffPb.TabStop = false;
             // 
@@ -255,20 +281,15 @@
             this.diffLabel.Text = "Difference";
             this.diffLabel.Visible = false;
             // 
-            // morphologyToolStripMenuItem
+            // toolStripButton1
             // 
-            this.morphologyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.thinningToolStripMenuItem1});
-            this.morphologyToolStripMenuItem.Name = "morphologyToolStripMenuItem";
-            this.morphologyToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.morphologyToolStripMenuItem.Text = "Morphology";
-            // 
-            // thinningToolStripMenuItem1
-            // 
-            this.thinningToolStripMenuItem1.Name = "thinningToolStripMenuItem1";
-            this.thinningToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.thinningToolStripMenuItem1.Text = "Thinning";
-            this.thinningToolStripMenuItem1.Click += new System.EventHandler(this.thinningToolStripMenuItem1_Click);
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(45, 22);
+            this.toolStripButton1.Text = "Rotate";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // Form1
             // 
@@ -319,6 +340,8 @@
         private System.Windows.Forms.ToolStripMenuItem thinningToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem morphologyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thinningToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem openingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }
 
